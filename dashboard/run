@@ -1,0 +1,10 @@
+#!/bin/bash
+
+kubectl create -f serviceAccount.yaml
+kubectl create -f clusterRBAC.yaml
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}') >> adminToken
+grep -r "token:" adminToken
+
+export EDITOR=nano
+#change ClusterIP to NodePort
+kubectl -n kube-system edit service kubernetes-dashboard

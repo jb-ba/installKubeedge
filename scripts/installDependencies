@@ -1,0 +1,11 @@
+#!/bin/bash
+#export USERNAME=$(read -p 'Username: ' uval && echo -n $uval) && \
+
+echo *** Prepare system ***
+sudo apt update
+sudo apt install -y snapd curl docker.io
+sudo systemctl enable docker
+sudo apt-get install -y openssh-server
+sudo snap install helm --classic
+sudo apt-get install -y apt-transport-https
+
